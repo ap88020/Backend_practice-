@@ -3,8 +3,7 @@ const app = express();
 app.use(express.json());
 const jwt = require('jsonwebtoken');
 const jwt_secret_key = "key";
-
-const users = [];
+const users = require('./data');
 
 const signUp = (req,res) => {
     const username = req.body.username;
@@ -18,7 +17,7 @@ const signUp = (req,res) => {
     res.json({
         message : "You signed In",
     })
-};
+}
 
 const signIn = (req,res) => {
     const username = req.body.username;
@@ -39,21 +38,22 @@ const signIn = (req,res) => {
             token : token,
         })
     }
-};
+}
+const endPoint = (req, res) => {
+    const foundUser = users.find(user => user.username === req.user.username);
 
-const endPoint = (req,res) => {
-    const token = req.headers.token;
-
-    const decoded = jwt.verify(token,jwt_secret_key);
-
-    if(decoded.username){
-        const foundUser = users.find(user => user.username === decoded.username);
-
-        res.json({
-            userName : foundUser.username,
-            userPassword : foundUser,
-        })
+    if (!foundUser) {
+        return res.status(404).json({ message: "User not found" });
     }
+
+    res.json({
+        userName: foundUser.username,
+        userPassword: foundUser.password
+    });
 };
 
-module.exports = {signUp , signIn , endPoint};
+const todoGet = (req,res) => {};
+const todoPost = (req,res) => {};
+const todoDelete = (req,res) => {};
+
+module.exports = {signUp, signIn, endPoint, todoGet, todoPost, todoDelete};

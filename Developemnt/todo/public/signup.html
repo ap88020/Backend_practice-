@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    async function signup(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await axios.post("http://localhost:3000/signup", {
+          username,
+          password
+        });
+
+        document.getElementById("message").innerText = response.data.message;
+
+        window.location.href = "http://localhost:3000/signin";
+
+      } catch (error) {
+        console.error(error);
+        document.getElementById("message").innerText = "Something went wrong!";
+      }
+    }
+
+    window.onload = function () {
+      document.getElementById("signupForm").addEventListener("submit", signup);
+    };
+  </script>
+</head>
+<body>
+  <h2>Sign Up</h2>
+  <form id="signupForm">
+    <input type="text" placeholder="Username" id="username" required><br>
+    <input type="password" placeholder="Password" id="password" required><br>
+    <button type="submit">Sign Up</button>
+  </form>
+  
+  <!-- ✅ This will show response message -->
+  <p id="message" style="color: green; font-weight: bold;"></p>
+
+</body>
+</html>
