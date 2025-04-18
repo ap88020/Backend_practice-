@@ -1,19 +1,11 @@
 const {Router} = require('express');
-const adminModel = require('../db');
+const {signUp,signIn} = require('../middleware/admin.middleware');
 
 const adminRouter = Router();
 
-adminRouter.post("/sgnup",(req,res) => {
-    res.json({
-        message : "admin sign up endpiont",
-    })
-})
+adminRouter.post("/signup",  signUp);
 
-adminRouter.post("/signin",(req,res) => {
-    res.json({
-        message : "admin signin endpoint",
-    })
-})
+adminRouter.post("/signin", signIn);
 
 adminRouter.post("/course", (req,res) => {
     res.json({

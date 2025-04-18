@@ -1,18 +1,11 @@
 const {Router} = require('express');
-
+const {userModel} = require('../db');
 const userRouter = Router();
+const { signUp,signIn } = require('../middleware/user.middleware');
 
-userRouter.post("/signup", (req,res) => {
-    res.json({
-        message : "sign up endpoint",
-    })
-})
+userRouter.post("/signup", signUp);
 
-userRouter.post("/signin", (req,res) => {
-    res.json({
-        message : "sign in endpoint",
-    })
-})
+userRouter.post("/signin", signIn);
 
 userRouter.get("/purchases", (req,res) => {
     res.json({
@@ -21,5 +14,5 @@ userRouter.get("/purchases", (req,res) => {
 })
 
 module.exports = {
-    userRouter : userRouter,
+    userRouter : userRouter
 }
