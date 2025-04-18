@@ -22,6 +22,7 @@ const signUp =  async (req,res)=> {
     const password = req.body.password;
     const name = req.body.name;
 
+    
     try {
         const hashPassword = await bcrypt.hash(password,5);
         console.log(hashPassword);
