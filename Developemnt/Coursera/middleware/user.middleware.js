@@ -2,7 +2,7 @@ const {Router} = require('express');
 const {userModel} = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const jwt_secret = "sky123";
+const { jwt_secret_user } = require('../config');
 
 const signUp = async (req,res) => {
     const {email,password,firstName,lastName} = req.body;
@@ -34,7 +34,7 @@ const signIn =  async (req,res) => {
         }else{
             const token = jwt.sign({
                 id : user._id
-            },jwt_secret);
+            },jwt_secret_user);
             
             res.status(200).json({
                 name : user.firstName,
