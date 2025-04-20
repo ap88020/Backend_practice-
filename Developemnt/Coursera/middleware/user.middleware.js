@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {userModel} = require('../db');
+const {userModel,purchaseModel} = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { jwt_secret_user } = require('../config');
@@ -50,5 +50,21 @@ const signIn =  async (req,res) => {
         })
     }
 }
+const purchases = async (req, res) => {
+    try {
+        const userId = req.userId;
 
-module.exports = {signUp,signIn};
+        const purchases = await purchaseModel
+            .find({ userId })
+            .populate('courseId', 'title'); // this will add course title
+
+        res.json({ purchases });
+    } catch (error) {
+        res.status(403).json({ error: error.message });
+    }
+};
+    
+
+
+
+module.exports = {signUp,signIn,purchases};
