@@ -1,37 +1,15 @@
 import { useEffect, useState } from "react"
+import AddTodo  from "./components/AddTodo"
+import Todos from "./components/Todos"
 
 function App() {
   return (
     <>
-        <Count></Count>
+      < AddTodo />
+      {/* < Todos /> */}
     </>
   )
 }
 
-function Count() {
-const [count, setCount] = useState(0);
-function increase(){
-  setCount(count + 1);
-}
-
-useEffect(() => {
-  let clock = setInterval(() => {
-    console.log("mount");
-    setCount(prevCount => prevCount + 1);
-  },1000)
-  return function (){
-    console.log("un mount");
-    clearInterval(clock);
-  }
-},[]);
-
-
-  return (
-    <>
-      <h1>{count}</h1>
-      <button onClick={increase}>Increase </button>
-    </>
-  )
-}
 
 export default App
