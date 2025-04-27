@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../feature/todo/todoSlice';
+import { addTodo, updateTodo } from '../feature/todo/todoSlice';
 
-const AddTodo = () => {
+const AddTodo = ({editTodo, setEditTodo}) => {
 
     const [input , setInput] = useState('');
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if(editTodo){
+            setInput(editTodo.text);
+        }
+    },[setEditTodo]);
+
     const inputHandler = (e) => {
         e.preventDefault();
-        dispatch(addTodo(input));
+        if(editTodo){
+            dispatch(updateTodo({id : editTodo.id , text: input}));
+            setEditTodo(null);
+        }else{
+            dispatch(addTodo(input));
+        }
         setInput('');
     }
 
-
     return (
-        <form
+        <div className='flex justify-center items-center'>
+            <form
             onSubmit={inputHandler} 
             className="flex items-center gap-4 p-6 flex-center">
             <input
@@ -31,10 +42,11 @@ const AddTodo = () => {
                     type="submit"
                     className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-md"
                 >
-                    Add
+                    { editTodo ? "Update" : "Add" }
                 </button>
             </div>
         </form>
+        </div>
     );
 };
 
