@@ -1,22 +1,53 @@
-class Legel{
-    age : number;
+// function num1(num : number){
+//     return num;
+// }
 
-    constructor(age : number){
-        this.age = age;
-    }
+import { isFunctionDeclaration } from "typescript";
 
-    isLegel() : boolean{
-        if(this.age > 18){
-            return true;
-        }else{
-            return false;
-        }
+// function sum(a : number , b : number){
+//     let num : number =  num1(b);
+
+//     console.log(`sum of a and b :- ${a + num}`);
+// }
+
+// sum(22 , 22);
+
+// function age(age : number){
+//     if(age > 18){
+//         console.log("you can vote");
+//     }else{
+//         console.log("you can't vote");
+//     }
+// }
+
+// age(33);
+
+// function delayedCall(fn : () => void){
+//     setTimeout(fn , 2000);
+// }
+
+// delayedCall(() => {
+//     console.log("this will work after 2 second");
+// })
+
+function greet(user : {
+    name : string,
+    age : number
+    address : {
+        street : number,
+        place : string,
     }
+}){
+    console.log(`your name is ${user.name} , or age is ${user.age} or you live in ${user.address.place}`);
 }
 
-const legel = new Legel(12);
+let user = {
+    name  : "akash",
+    age : 20,
+    address : {
+        street : 23,
+        place : "delhi",
+    },
+}
 
-const ans = legel.isLegel();
-
-console.log(ans);
-
+greet(user);

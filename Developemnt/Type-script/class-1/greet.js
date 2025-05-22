@@ -1,13 +1,5 @@
 "use strict";
-function greet(user) {
-    console.log(`Hello ${user.address.countryName}`);
+function greet(firstName, lastNamme) {
+    console.log(`hey ${firstName} how are you and your number is ${lastNamme}`);
 }
-let user = {
-    name: 'Akash',
-    age: 20,
-    address: {
-        streetName: "Surya-Vihar",
-        countryName: "India"
-    }
-};
-greet(user);
+greet("rohit", true);

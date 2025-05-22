@@ -1,11 +1,5 @@
-interface todo{
-    title : string,
-    description : string,
-    done : boolean,
+function todo(id : number , todo : string){
+    console.log(`id : ${id} , todo : ${todo}`);
 }
 
-interface todoInput {
-    todo : todoType;
-}
-
-function Todo(props : todoInput);
+todo(1 , "study");
