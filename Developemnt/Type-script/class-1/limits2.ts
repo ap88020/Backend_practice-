@@ -1,6 +1,6 @@
 // Type Aliases 
 
-import { ConstructorTypeNode } from "typescript";
+import { ConstructorTypeNode, couldStartTrivia } from "typescript";
 
 // type sankhya = number;
 
@@ -75,21 +75,71 @@ let b2 = new BottleMaker("paras",3000);
 
 // m1.print();
 
-class Bottle {
-    private halua : string = "halua";
-    constructor(public  name : string){}
+// class Bottle {
+//     private halua : string = "halua";
+//     constructor(public  name : string){}
+// }
+
+// class ChiltonBootol extends Bottle {
+//     constructor(name : string){
+//         super(name);
+//     }
+
+//     print() :void {
+//         console.log(this.name , this.halua);
+//     }
+// }
+
+// let c1 = new ChiltonBootol("gulab jamun");
+
+// c1.print();
+
+
+// class User {
+//     constructor(public name : string , public age : number , public gender? : string){}
+
+//     getName() : void{
+//         console.log(this.name);
+//     }
+//     setName(value : string){
+//         this.name = value;
+//     }
+// }
+
+
+// let u1 = new User("Akash",34,"male");
+// // let u2 = new User("anupama",34,);
+
+// u1.setName("akashaa");
+// u1.getName();
+
+
+// class Numbers{
+//     static getRandom(){
+//         return Math.floor(Math.random() * 10);  
+//     }
+// }
+
+// let num = Numbers.getRandom();
+
+// console.log(num);
+
+// function abcdef(name : string, age : number , cb:(arg : string) => void){
+//     cb("amir");
+// }
+
+// abcdef("harsh" , 24, (arg : string) => {
+//     console.log("avcd");
+// });
+
+function sum(...arr : number[]){
+    // console.log(arr);
 }
 
-class ChiltonBootol extends Bottle {
-    constructor(name : string){
-        super(name);
-    }
+sum(1,2,3,4,5,6,7,8,9,10);
 
-    print() :void {
-        console.log(this.name , this.halua);
-    }
+function friend(...name : string[]){
+    console.log(name);
 }
 
-let c1 = new ChiltonBootol("gulab jamun");
-
-c1.print();
+friend("tomato","potato","alloo");
